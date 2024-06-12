@@ -76,7 +76,12 @@ def MenuSmallScreenBtn(show=False):
     ]
   )
 
-def NavBarItems():
+def nav_bar_itme_styles(active : bool):
+     print(active)
+     cls_name = "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" if active else "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+     return cls_name
+
+def NavBarItems(active):
     return Div(
       "hidden sm:ml-6 sm:block",
       [
@@ -87,26 +92,26 @@ def NavBarItems():
             NavItemText(
                 "javascript:;", 
                 "Docs", 
-                "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white",
+                nav_bar_itme_styles( active="docs" == active),
                 "nav_bar_header.navigate_to_docs"
             ),
             NavItemText(
             "javascript:;", 
             "Components", 
-            "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
+            nav_bar_itme_styles(active == "components"),
             "nav_bar_header.navigate_to_components"
             ),
             NavItemText(
                 "javascript:;", 
                 "Themes", 
-                "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
+                nav_bar_itme_styles(active == "theme"),
                 "nav_bar_header.navigate_to_theme"
 
             ),
             NavItemText(
                 "javascript:;", 
                 "Examples", 
-                "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
+                nav_bar_itme_styles(active == "examples"),
                 "nav_bar_header.navigate_to_examples"
             ),
           ]

@@ -5,23 +5,23 @@ from zenaura.client.mutator import mutator
 
 
 class Header(Component):
-	def __init__(self, router, class_names_nav="bg-gray-800", class_names_container="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8", class_names_div="relative flex h-16 items-center justify-between"):
+	def __init__(self, router, class_names_nav="fixed left-0 right-0 z-40 bg-gray-800", class_names_container="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8", class_names_div="relative flex h-16 items-center justify-between"):
 		self.class_names_nav = class_names_nav
 		self.class_names_container = class_names_container
 		self.class_names_div = class_names_div
 		self.show_mobile = False
 		self.router = router 
 
-	@mutator
 	async def toggle_mobile_menu(self, event):
 		self.show_mobile = not self.show_mobile
 
+	@mutator
 	async def navigate_to_docs(self, event):
 		await self.router.navigate("/docs")
 
 	async def navigate_to_components(self, event):
 		await self.router.navigate("/components")
-	
+
 	async def navigate_to_theme(self, event):
 		await self.router.navigate("/theme")
 	
@@ -29,6 +29,8 @@ class Header(Component):
 		await self.router.navigate("/examples")
 
 	def render(self):
+		(_, title, _, _), _ = self.router.get_current_route()
+		print(title)
 		return Builder('nav').with_attribute('class', self.class_names_nav).with_child(
 			Div(self.class_names_container, [
 				Div(self.class_names_div, [
@@ -41,7 +43,7 @@ class Header(Component):
 							flex flex-1 items-center justify-center 
 							sm:items-stretch sm:justify-start
 							""", 
-							[NavBarLogo(), NavBarItems()]
+							[NavBarLogo(), NavBarItems(title)]
 						),
 						NavBarRightContent()
 				]), 

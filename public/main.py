@@ -45,6 +45,7 @@ docs_page = Page(AppLayout([docs]))
 components_page = Page(AppLayout([components]))
 example_page = Page(AppLayout([example]))
 theme_page = Page(AppLayout([theme]))
+
 router.add_route(Route(
     title="Developer-Focused | Zenaura",
     path=ClientRoutes.home.value,
@@ -75,7 +76,6 @@ router.add_route(Route(
     path=ClientRoutes.theme.value,
     page=theme_page
 ))
-
 
 
 # handle when user enter url with path different than "/"
