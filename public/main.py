@@ -1,27 +1,83 @@
-from zenaura.client.app import Route, App
+import asyncio
+from zenaura.client.app import Route, App, HistoryNode
 from zenaura.client.page import Page
 from public.routes import ClientRoutes
 from public.components.header import Header
 from public.components.intro import IntroSection
 from public.components.footer import Footer
+from public.components.docs import Docs
+from public.components.components import Components
+from public.components.examples import Example
+
+from public.components.theme import Theme
+try :
+    from pyscript import window, document
+except ImportError:
+    from zenaura.client.mocks import MockWindow
+    window = MockWindow()
+
+event_loop = asyncio.get_event_loop()
 
 import asyncio
 
+router = App()
+
 # Instantiate components
-nav_bar_header = Header()
+nav_bar_header = Header(router)
 intro_section = IntroSection()
 footer = Footer()
+docs = Docs()
+components = Components()
+example = Example() 
+theme = Theme()
+
+# hoc 
+def AppLayout(page_children):
+    return [
+        nav_bar_header,
+        *page_children,
+        footer,
+    ]
 
 # App and routing
-router = App()
-home_page = Page([nav_bar_header, intro_section, footer])
-
+home_page = Page(AppLayout([intro_section]))
+docs_page = Page(AppLayout([docs]))
+components_page = Page(AppLayout([components]))
+example_page = Page(AppLayout([example]))
+theme_page = Page(AppLayout([theme]))
 router.add_route(Route(
     title="Developer-Focused | Zenaura",
     path=ClientRoutes.home.value,
     page=home_page
 ))
 
-# Run the application
-event_loop = asyncio.get_event_loop()
-event_loop.run_until_complete(router.handle_location())
+router.add_route(Route(
+    title="docs",
+    path=ClientRoutes.docs.value,
+    page=docs_page
+))
+
+router.add_route(Route(
+    title="components",
+    path=ClientRoutes.components.value,
+    page=components_page
+))
+
+
+router.add_route(Route(
+    title="example",
+    path=ClientRoutes.examples.value,
+    page=example_page
+))
+
+router.add_route(Route(
+    title="theme",
+    path=ClientRoutes.theme.value,
+    page=theme_page
+))
+
+
+
+# handle when user enter url with path different than "/"
+router.history.current = HistoryNode(home_page)
+event_loop.run_until_complete(router.navigate(window.location.pathname))

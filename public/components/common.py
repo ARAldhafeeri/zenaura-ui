@@ -90,3 +90,11 @@ def ExpandableContent(code, is_visible, class_name=''):
 		content.attributes.append(Attribute('class', class_name))
 		content.attributes.append(Attribute('active', is_visible))
 		return content
+
+def Loader():
+	return Div("loader", [
+		Div("", [
+			Div("", [
+			])
+		])
+	])

@@ -8,8 +8,11 @@ app = Flask(__name__, static_folder="public", template_folder="public")
 
 DEVSERVER = DevServer(app, port=5000, debug=True)
 
-@DEVSERVER.app.route(ClientRoutes.counter.value)
+@DEVSERVER.app.route(ClientRoutes.examples.value)
 @DEVSERVER.app.route(ClientRoutes.home.value)
+@DEVSERVER.app.route(ClientRoutes.components.value)
+@DEVSERVER.app.route(ClientRoutes.theme.value)
+@DEVSERVER.app.route(ClientRoutes.docs.value)
 def root():
     try:
         return render_template("index.html")

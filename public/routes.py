@@ -2,5 +2,7 @@ from enum import Enum
 
 class ClientRoutes(Enum):
     home="/"
-    counter="/counter"
-    ssr="/ssr"
+    docs="/docs"
+    components="/components"
+    theme="/theme"
+    examples="/examples"

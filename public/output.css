@@ -803,6 +803,35 @@ video {
   text-decoration-line: underline;
 }
 
+/*
+loader
+*/
+
+.lds-circle {
+  /* change color here */
+  color: #1c4c5b
+}
+
+.lds-circle,
+.lds-circle div {
+  box-sizing: border-box;
+}
+
+.lds-circle {
+  display: inline-block;
+  transform: translateZ(1px);
+}
+
+.lds-circle > div {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  background: currentColor;
+  border-radius: 50%;
+  animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
 .hover\:bg-gray-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));

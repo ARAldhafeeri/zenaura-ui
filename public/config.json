@@ -23,8 +23,12 @@
           "./public/components/footer.py",
           "./public/components/header.py",
           "./public/components/intro.py",
+          "./public/components/docs.py",
+          "./public/components/components.py",
+          "./public/components/theme.py",
+          "./public/components/examples.py",
+          "./public/loading.py",
           "./public/main.py"
-          
         ]
       }
     ],
