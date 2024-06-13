@@ -1,7 +1,7 @@
 from .common import *
 from zenaura.client.tags.builder import Builder
 
-def NavItemText(href, text, class_names="", click=None):
+def NavItemText(href, text, class_names, click=None):
   tag = Builder('a') \
     .with_attribute("class", class_names) \
     .with_attribute("href", href) \
@@ -76,11 +76,6 @@ def MenuSmallScreenBtn(show=False):
     ]
   )
 
-def nav_bar_itme_styles(active : bool):
-     print(active)
-     cls_name = "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" if active else "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-     return cls_name
-
 def NavBarItems(active):
     return Div(
       "hidden sm:ml-6 sm:block",
@@ -92,26 +87,26 @@ def NavBarItems(active):
             NavItemText(
                 "javascript:;", 
                 "Docs", 
-                nav_bar_itme_styles( active="docs" == active),
-                "nav_bar_header.navigate_to_docs"
+                f"rounded-md {'bg-[#243c5a]' if active == 'docs' else 'hover:bg-gray-700 hover:text-white'} px-3 py-2 text-sm font-medium text-gray-300",
+                click="nav_bar_header.navigate_to_docs"
             ),
             NavItemText(
             "javascript:;", 
             "Components", 
-            nav_bar_itme_styles(active == "components"),
+            f"rounded-md {'bg-[#243c5a]' if active == 'components' else 'hover:bg-gray-700 hover:text-white'}  px-3 py-2 text-sm bg-red font-medium text-gray-300",
             "nav_bar_header.navigate_to_components"
             ),
             NavItemText(
                 "javascript:;", 
                 "Themes", 
-                nav_bar_itme_styles(active == "theme"),
+                f"rounded-md {'bg-[#243c5a]' if active == 'theme' else 'hover:bg-gray-700 hover:text-white'} px-3 py-2 text-sm font-medium text-gray-300",
                 "nav_bar_header.navigate_to_theme"
 
             ),
             NavItemText(
                 "javascript:;", 
                 "Examples", 
-                nav_bar_itme_styles(active == "examples"),
+                f"rounded-md {'bg-[#243c5a]' if active == 'example' else 'hover:bg-gray-700 hover:text-white'}  px-3 py-2 text-sm font-medium text-gray-300",
                 "nav_bar_header.navigate_to_examples"
             ),
           ]
@@ -119,8 +114,7 @@ def NavBarItems(active):
       ]
     )
 
-def NavBarItemsMobile(show=False):
-    btn_class ="block text-left px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+def NavBarItemsMobile(show, active):
     visable = "" if show else "hidden"
     return Div(
       visable,
@@ -132,22 +126,22 @@ def NavBarItemsMobile(show=False):
             NavItemText(
                 "javascript:;", 
                 "Docs", 
-                "block flex-auto w-screen text-left rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+                f"rounded-md text-left {'bg-[#243c5a]' if active == 'docs' else 'hover:bg-gray-700 hover:text-white'}  px-3 py-2 text-sm font-medium text-gray-300"
             ),
             NavItemText(
             "javascript:;", 
             "Components", 
-            btn_class,
+            f"rounded-md text-left {'bg-[#243c5a]' if active == 'components' else 'hover:bg-gray-700 hover:text-white'}  px-3 py-2 text-sm font-medium text-gray-300",
             ),
             NavItemText(
                 "javascript:;", 
                 "Themes", 
-              btn_class,
+              f"rounded-md text-left {'bg-[#243c5a]' if active == 'theme' else 'hover:bg-gray-700 hover:text-white'}  px-3 py-2 text-sm font-medium text-gray-300",
             ),
             NavItemText(
                 "javascript:;", 
                 "Examples", 
-                btn_class
+                f"rounded-md text-left {'bg-[#243c5a]' if active == 'examples' else 'hover:bg-gray-700 hover:text-white'}  px-3 py-2 text-sm font-medium text-gray-300"
             ),
           ]
         )

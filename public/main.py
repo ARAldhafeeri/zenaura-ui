@@ -8,6 +8,7 @@ from public.components.footer import Footer
 from public.components.docs import Docs
 from public.components.components import Components
 from public.components.examples import Example
+from zenaura.client.layout import Layout
 
 from public.components.theme import Theme
 try :
@@ -32,19 +33,13 @@ example = Example()
 theme = Theme()
 
 # hoc 
-def AppLayout(page_children):
-    return [
-        nav_bar_header,
-        *page_children,
-        footer,
-    ]
 
 # App and routing
-home_page = Page(AppLayout([intro_section]))
-docs_page = Page(AppLayout([docs]))
-components_page = Page(AppLayout([components]))
-example_page = Page(AppLayout([example]))
-theme_page = Page(AppLayout([theme]))
+home_page = Page([intro_section])
+docs_page = Page([docs])
+components_page = Page([components])
+example_page = Page([example])
+theme_page = Page([theme])
 
 router.add_route(Route(
     title="Developer-Focused | Zenaura",
@@ -76,6 +71,13 @@ router.add_route(Route(
     path=ClientRoutes.theme.value,
     page=theme_page
 ))
+
+my_app_layout = Layout(
+    top= [nav_bar_header], 
+    routes=router.routes,  
+    bottom=[footer] 
+)
+
 
 
 # handle when user enter url with path different than "/"
