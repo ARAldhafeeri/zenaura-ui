@@ -9,6 +9,7 @@ from public.components.docs import Docs
 from public.components.components import Components
 from public.components.examples import Example
 from zenaura.client.layout import Layout
+from zenaura.client.dom import zenaura_dom
 
 from public.components.theme import Theme
 try :
@@ -78,7 +79,8 @@ my_app_layout = Layout(
     bottom=[footer] 
 )
 
-
+# sync layout component lifecycle methods
+router.layout = my_app_layout
 
 # handle when user enter url with path different than "/"
 router.history.current = HistoryNode(home_page)
