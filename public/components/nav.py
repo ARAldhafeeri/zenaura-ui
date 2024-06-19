@@ -156,54 +156,20 @@ def NavBarLogo():
         ]
     )
 
-def NavBarRightContent():
+def NavBarRightContent(is_dark):
     return Div(
     "absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0", 
       [
       
         ButtonWithAttrsChildren(
-            "relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800",
+            "relative",
             {"type": "button"},
             [
                 Span("absolute -inset-1.5"),
                 Span("sr-only", "View notifications"),
-                Svg(
-                    class_name="h-6 w-6", 
-                    fill="none", 
-                    viewBox="0 0 24 24", 
-                    stroke="currentColor", 
-                    path=SvgPath(
-                            linecap="round", 
-                            linejoin="round", 
-                            d='M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0'
-                    ),
-                    stroke_width="1.5"
-                )
-            ]
-        ),
-        Div("relative ml-3", [
-            Div("", [
-                ButtonWithAttrsChildren(
-                    "relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800",
-                    {
-                        "type": "button", 
-                        'id' : 'user-menu-button',
-                        'aria-expanded': 'false',
-                        'aria-haspopup': 'true'
-                    },
-                    [
-                        Span("absolute -inset-1.5"),
-                        Span("sr-only", "Open user menu"),
-                        Image(
-                          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-                          "", 
-                          "32", 
-                          "32", 
-                          "h-8 w-8 rounded-full"
-                        )
-                    ]
-                )
-            ])
-        ])
+               Image("./public/dark.png", "toggle theme", "15", "15") if is_dark else Image("./public/light.png", "toggle theme", "15", "15")
+            ],
+            "nav_bar_header.toggle_theme"
+        )
       ]
   )

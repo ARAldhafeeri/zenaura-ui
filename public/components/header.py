@@ -2,15 +2,24 @@ from public.components.common import *
 from public.components.nav import *
 from zenaura.client.component import Component, Reuseable
 from zenaura.client.mutator import mutator
+try:
+	from pyscript import document
+	from js import localStorage
+except ImportError:
+	# build server
+	document = None 
+	localStorage = None 
+
 
 class Header(Component):
-	def __init__(self, router, class_names_nav="fixed left-0 right-0 z-40 bg-light-gray1", class_names_container="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8", class_names_div="relative flex h-16 items-center justify-between"):
-		self.class_names_nav = class_names_nav
-		self.class_names_container = class_names_container
-		self.class_names_div = class_names_div
+	def __init__(self, router):
+		self.class_names_nav = "fixed left-0 right-0 z-40 bg-light-gray1 dark:bg-dark-black"
+		self.class_names_container = "mx-auto max-w-7xl px-2 sm:px-6 lg:px-8"
+		self.class_names_div =  "relative flex h-16 items-center justify-between"
 		self.show_mobile = False
 		self.router = router 
 		self.title = ""
+		self.light = False 
 
 	def update_title(self):
 		info, context = self.router.get_current_route()
@@ -19,30 +28,43 @@ class Header(Component):
 		else: 
 			title = ""
 
+	def theme_condition(self, condition):
+		document.documentElement.classList.add('dark') if condition else document.documentElement.classList.remove('dark')
+		localStorage.setItem("theme", "light") if condition else localStorage.setItem("theme", "dark") 
+
 	@mutator
-	async def toggle_mobile_menu(self, event):
+	async def toggle_mobile_menu(self, _):
 		self.show_mobile = not self.show_mobile
 
-	async def navigate_to_docs(self, event):
+	@mutator
+	async def toggle_theme(self, _):
+		self.light = not self.light
+		self.theme_condition(self.light)
+		
+
+
+	async def navigate_to_docs(self, _):
 		await self.router.navigate("/docs")
 		self.update_title()
 
-	async def navigate_to_components(self, event):
+	async def navigate_to_components(self, _):
 		await self.router.navigate("/components")
 		self.update_title()
 		
-	async def navigate_to_theme(self, event):
+	async def navigate_to_theme(self, _):
 		await self.router.navigate("/theme")
 		self.update_title()
 	
-	async def navigate_to_examples(self, event):
+	async def navigate_to_examples(self, _):
 		await self.router.navigate("/examples")
 		self.update_title()
 
 	@mutator
 	async def attached(self):
 		self.update_title()
-
+		is_dark = localStorage.getItem("theme") == "dark"
+		self.theme_condition(is_dark)
+		print(is_dark)
 
 
 	def render(self):
@@ -60,7 +82,7 @@ class Header(Component):
 							""", 
 							[NavBarLogo(), NavBarItems(self.title)]
 						),
-						NavBarRightContent()
+						NavBarRightContent(self.light)
 				]), 
 				ButtonWithAttrsChildren("", {}, [
 					NavBarItemsMobile(self.show_mobile, self.title)
