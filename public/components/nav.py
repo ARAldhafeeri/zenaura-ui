@@ -76,8 +76,9 @@ def MenuSmallScreenBtn(show=False):
     ]
   )
 
-active_item_class = 'bg-light-green dark:bg-dark-gray2'
-inactive_item_class = 'hover:bg-light-green hover:text-white dark:hover:bg-dark-gray2'
+active_item_class = 'bg-light-green dark:bg-dark-gray2 text-light-white dark:text-dark-page1'
+inactive_item_class = 'hover:bg-light-green hover:text-white dark:hover:bg-dark-gray2 text-light-white dark:text-dark-page1'
+
 def NavBarItems(active):
     return Div(
       "hidden sm:ml-6 sm:block",

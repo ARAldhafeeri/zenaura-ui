@@ -9,8 +9,8 @@ def Image(src, alt, width, height, classname=""):
 				height=height,
 		).with_attribute("class", classname).build()
 
-def Header2(text):
-		return Builder('h2').with_text(text).build()
+def Header2(text, class_name=""):
+		return Builder('h2').with_attribute("class", class_name).with_text(text).build()
 
 def Header1(text, class_names):
 		return Builder('h1').with_text(text).with_attribute("class", class_names).build()
