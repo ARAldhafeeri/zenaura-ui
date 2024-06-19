@@ -76,6 +76,8 @@ def MenuSmallScreenBtn(show=False):
     ]
   )
 
+active_item_class = 'bg-light-green dark:bg-dark-gray2'
+inactive_item_class = 'hover:bg-light-green hover:text-white dark:hover:bg-dark-gray2'
 def NavBarItems(active):
     return Div(
       "hidden sm:ml-6 sm:block",
@@ -87,26 +89,26 @@ def NavBarItems(active):
             NavItemText(
                 "javascript:;", 
                 "Docs", 
-                f"rounded-md {'bg-light-green' if active == 'docs' else 'hover:bg-light-green hover:text-white'} px-3 py-2 text-sm font-medium text-light-white",
+                f"rounded-md {active_item_class if active == 'docs' else inactive_item_class} px-3 py-2 text-sm font-medium text-light-white",
                 click="nav_bar_header.navigate_to_docs"
             ),
             NavItemText(
             "javascript:;", 
             "Components", 
-            f"rounded-md {'bg-light-green' if active == 'components' else 'hover:bg-light-green hover:text-white'}  px-3 py-2 text-sm bg-red font-medium text-light-white",
+            f"rounded-md {active_item_class if active == 'components' else inactive_item_class}  px-3 py-2 text-sm bg-red font-medium text-light-white",
             "nav_bar_header.navigate_to_components"
             ),
             NavItemText(
                 "javascript:;", 
                 "Themes", 
-                f"rounded-md {'bg-light-green' if active == 'theme' else 'hover:bg-light-green hover:text-white'} px-3 py-2 text-sm font-medium text-light-white",
+                f"rounded-md {active_item_class if active == 'theme' else inactive_item_class} px-3 py-2 text-sm font-medium text-light-white",
                 "nav_bar_header.navigate_to_theme"
 
             ),
             NavItemText(
                 "javascript:;", 
                 "Examples", 
-                f"rounded-md {'bg-light-green' if active == 'example' else 'hover:bg-light-green hover:text-white'}  px-3 py-2 text-sm font-medium text-light-white",
+                f"rounded-md {active_item_class if active == 'example' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white",
                 "nav_bar_header.navigate_to_examples"
             ),
           ]
@@ -126,22 +128,22 @@ def NavBarItemsMobile(show, active):
             NavItemText(
                 "javascript:;", 
                 "Docs", 
-                f"rounded-md text-left {'bg-light-green' if active == 'docs' else 'hover:bg-light-green hover:text-white'}  px-3 py-2 text-sm font-medium text-light-white"
+                f"rounded-md text-left {active_item_class if active == 'docs' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white"
             ),
             NavItemText(
             "javascript:;", 
             "Components", 
-            f"rounded-md text-left {'bg-light-green' if active == 'components' else 'hover:bg-light-green hover:text-white'}  px-3 py-2 text-sm font-medium text-light-white",
+            f"rounded-md text-left {active_item_class if active == 'components' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white",
             ),
             NavItemText(
                 "javascript:;", 
                 "Themes", 
-              f"rounded-md text-left {'bg-light-green' if active == 'theme' else 'hover:bg-light-green hover:text-white'}  px-3 py-2 text-sm font-medium text-light-white",
+              f"rounded-md text-left {active_item_class if active == 'theme' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white",
             ),
             NavItemText(
                 "javascript:;", 
                 "Examples", 
-                f"rounded-md text-left {'bg-light-green' if active == 'examples' else 'hover:bg-light-green hover:text-white'}  px-3 py-2 text-sm font-medium text-light-white"
+                f"rounded-md text-left {active_item_class if active == 'examples' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white"
             ),
           ]
         )

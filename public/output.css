@@ -906,5 +906,25 @@ video {
 
 .dark\:bg-dark-gray1:where(.dark, .dark *) {
   --tw-bg-opacity: 1;
+  background-color: rgb(34 40 49 / var(--tw-bg-opacity));
+}
+
+.dark\:bg-dark-purble1:where(.dark, .dark *) {
+  --tw-bg-opacity: 1;
   background-color: rgb(57 54 70 / var(--tw-bg-opacity));
+}
+
+.dark\:bg-dark-gray2:where(.dark, .dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(52 73 85 / var(--tw-bg-opacity));
+}
+
+.dark\:hover\:bg-dark-purble1:hover:where(.dark, .dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(57 54 70 / var(--tw-bg-opacity));
+}
+
+.dark\:hover\:bg-dark-gray2:hover:where(.dark, .dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(52 73 85 / var(--tw-bg-opacity));
 }
