@@ -92,7 +92,7 @@ def ExpandableContent(code, is_visible, class_name=''):
 		return content
 
 def Loader():
-	return Div("loader self-center", [
+	return Div("loader self-center bg-light-white dark:bg-dark-gray1", [
 		Div("", [
 			Div("", [
 			])

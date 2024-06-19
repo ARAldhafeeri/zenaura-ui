@@ -21,6 +21,6 @@ class Components(Component):
     self.loading = True 
 
   def render(self):
-    return  Div("min-h-screen pt-16 relative ", [
+    return  Div("h-full bg-light-white dark:bg-dark-gray1", [
       Header1("components","pt-16") if not self.loading else Loader()
     ])

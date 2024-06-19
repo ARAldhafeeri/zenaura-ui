@@ -11,9 +11,9 @@ class IntroSection(Component):
 			self.loading = False
 
 		def render(self):
-			return  Div("min-h-screen pt-16 relative ", [
+			return  Div("min-h-screen pt-16 relative bg-light-white dark:bg-dark-gray1 ", [
 				Section([
-					Div("h-full", [
+					Div("h-full bg-light-white dark:bg-dark-gray1 ", [
 								Header1("The Python Library For Pythonistas! e32 !", "text-3xl font-bold underline" ),
 								Header1("Building Modern Web User Interface", "text-3xl font-bold underline")
 						]),

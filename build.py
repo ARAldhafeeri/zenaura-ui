@@ -15,5 +15,14 @@ ZenauraServer.hydrate_app_layout(my_app_layout, scripts=[
             location.reload();
             };
         </script>
+        """,
+        """
+        <script>
+        if ( localStorage.getItem('theme') === 'light'){
+            document.documentElement.classList.remove('dark')
+        } else {
+            document.documentElement.classList.add('dark')
+        }
+        </script>
         """
 ])

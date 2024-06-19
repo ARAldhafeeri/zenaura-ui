@@ -18,6 +18,6 @@ class Example(Component):
     self.loading = False
 
   def render(self):
-    return  Div("min-h-screen pt-16 relative ", [
+    return  Div("h-full bg-light-white dark:bg-dark-gray1", [
       Header1("examples","pt-16") if not self.loading else Loader()
     ])

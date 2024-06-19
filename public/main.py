@@ -79,6 +79,7 @@ my_app_layout = Layout(
     bottom=[footer] 
 )
 
+
 # sync layout component lifecycle methods
 router.layout = my_app_layout
 

@@ -29,8 +29,9 @@ class Header(Component):
 			title = ""
 
 	def theme_condition(self, condition):
-		document.documentElement.classList.add('dark') if condition else document.documentElement.classList.remove('dark')
-		localStorage.setItem("theme", "light") if condition else localStorage.setItem("theme", "dark") 
+		document.documentElement.classList.remove('dark') if condition else document.documentElement.classList.add('dark')
+		localStorage.setItem("theme", "light") if condition else localStorage.setItem("theme", "dark")
+		self.light = condition
 
 	@mutator
 	async def toggle_mobile_menu(self, _):
@@ -62,9 +63,8 @@ class Header(Component):
 	@mutator
 	async def attached(self):
 		self.update_title()
-		is_dark = localStorage.getItem("theme") == "dark"
-		self.theme_condition(is_dark)
-		print(is_dark)
+		is_light = localStorage.getItem("theme") == "light"
+		self.theme_condition(is_light)
 
 
 	def render(self):
