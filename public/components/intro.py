@@ -3,6 +3,7 @@ from zenaura.client.component import Component
 from zenaura.client.mutator import mutator
 from public.loading import DOMIsReady
 from public.components.tabs import TabsComponent, TabContent, TabButton
+from public.styles import main_content
 class IntroSection(Component):
 		def __init__(self):
 			self.loading = True
@@ -18,6 +19,9 @@ class IntroSection(Component):
 														h-9 px-4 py-2 rounded-[6px]
 														m-1 bg-light-gray1 text-light-white
 														hover:bg-light-green
+														dark:text-dark-page1
+														dark:bg-dark-black
+														dark:hover:bg-dark-gray2
 													"""
 			self.btn_two_class = """
 														inline-flex items-center justify-center whitespace-nowrap 
@@ -28,6 +32,9 @@ class IntroSection(Component):
 														h-9 px-4 py-2 rounded-[6px]
 														m-1 bg-light-white text-light-gray1
 														hover:text-light-green
+														dark:text-dark-black
+														dark:hover:bg-dark-gray2
+														dark:bg-dark-gray1
 													"""
 		@mutator
 		async def attached(self):
@@ -35,9 +42,9 @@ class IntroSection(Component):
 			self.loading = False
 
 		def render(self):
-			return  Div("min-h-screen  pt-16 relative bg-light-white dark:bg-dark-gray1 mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20 ", [
+			return  Div(main_content, [
 					Section([
-						Div("h-full bg-light-white dark:bg-dark-gray1 ", [
+						Div("h-full w-full bg-light-white dark:bg-dark-gray1 ", [
 									Header1("Build modern UI/UX faster with zenaura/ui", self.header_class),
 									Paragraph("Zenaura/UI enables developers to build modern web applications more efficiently by utilizing styled components and leveraging Tailwind CSS.", self.paragraph_class)
 							]),
@@ -47,9 +54,9 @@ class IntroSection(Component):
 							]),
 						TabsComponent(
 							[
-								TabButton(1, "Section 1", "openTab"),
-								TabButton(2, "Section 2",  "openTab"),
-								TabButton(3, "Section 3",  "openTab")
+								TabButton(1, "Login Form", "openTab"),
+								TabButton(2, "Dashboard",  "openTab"),
+								TabButton(3, "Mail",  "openTab")
 							],
 							[
 								TabContent(1,  "openTab", "Section 1 Content", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam justo nec justo lacinia, vel ullamcorper nibh tincidunt."),

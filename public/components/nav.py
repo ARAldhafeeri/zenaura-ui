@@ -176,3 +176,4 @@ def NavBarRightContent(is_dark):
         )
       ]
   )
+

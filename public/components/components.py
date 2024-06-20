@@ -2,9 +2,10 @@ import asyncio
 from public.loading import DOMIsReady
 from public.components.common import *
 from public.components.nav import *
+from public.components.sidebar import Sidebar
 from zenaura.client.component import Component
 from zenaura.client.mutator import mutator
-
+from public.styles import main_content
 class Components(Component):
   def __init__(self):
       self.loading = True
@@ -12,8 +13,6 @@ class Components(Component):
   @mutator
   async def attached(self):
     await DOMIsReady()
-    # just wait for better ui/ux
-    await asyncio.sleep(0.3)
     self.loading = False
 
   # feature reset 
@@ -21,6 +20,15 @@ class Components(Component):
     self.loading = True 
 
   def render(self):
-    return  Div("h-full bg-light-white dark:bg-dark-gray1", [
-      Header1("components","pt-16") if not self.loading else Loader()
+    return  Div(main_content, [
+      # main content
+      Div("flex w-auto p-4 ", [
+        	Section([
+            Sidebar("test"),
+						 Paragraph("""Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita quam odit officiis
+            magni doloribus ipsa dolore, dolores nihil accusantium labore, incidunt autem iure quae vitae voluptate,
+            esse asperiores aliquam repellat. Harum aliquid non officiis porro at cumque eaque inventore iure. Modi sunt
+            optio mollitia repellat sed ab quibusdam quos harum!"""),
+					], "grid grid-cols-[20%_80%]") if not self.loading else Loader()
+      ]) 
     ])

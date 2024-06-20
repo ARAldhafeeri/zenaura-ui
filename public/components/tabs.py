@@ -1,10 +1,10 @@
 from public.components.common import *
-# Define the required components
+from public.styles import with_theme_colors
 
 def TabButton(tab_number, label, active_tab_variable):
     class_expression = f"{{ 'bg-blue-600 text-white': {active_tab_variable} === {tab_number} }}"
     return ButtonWithAttrsChildren(
-        class_name=f"flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300",
+        class_name=with_theme_colors(f"flex-1 py-2 focus:outline-none focus:shadow-outline-blue transition-all duration-300"),
         attrs={"@click": f"{active_tab_variable} = {tab_number}", ":class": class_expression},
         children=[label]
     )
@@ -32,7 +32,7 @@ def TabsComponent(tab_buttons, tab_contents):
                         class_name="max-w-md mx-auto",
                         children=[
                             Div(
-                                class_name="mb-4 flex space-x-4 p-2 bg-white rounded-lg shadow-md",
+                                class_name="mb-4 flex p-2 bg-white rounded-lg shadow-md",
                                 children=tab_buttons
                             ),
                             *tab_contents
