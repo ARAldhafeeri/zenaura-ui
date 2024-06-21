@@ -1,5 +1,6 @@
 from .common import *
 from zenaura.client.tags.builder import Builder
+from public.styles import with_theme_colors
 
 def NavItemText(href, text, class_names, click=None):
   tag = Builder('a') \
@@ -76,8 +77,8 @@ def MenuSmallScreenBtn(show=False):
     ]
   )
 
-active_item_class = 'bg-light-green dark:bg-dark-gray2 text-light-white dark:text-dark-page1'
-inactive_item_class = 'hover:bg-light-green hover:text-white dark:hover:bg-dark-gray2 text-light-white dark:text-dark-page1'
+active_item_class = "text-light-green dark:text-dark-gray1"
+inactive_item_class = with_theme_colors("")
 
 def NavBarItems(active):
     return Div(

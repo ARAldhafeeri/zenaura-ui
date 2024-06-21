@@ -1,5 +1,6 @@
 from zenaura.client.tags.builder import Builder
 from zenaura.client.tags.node import Attribute
+from public.styles import with_theme_colors
 
 def Image(src, alt, width, height, classname=""):
 		return Builder("img").with_attributes(
@@ -98,3 +99,10 @@ def Loader():
 			])
 		])
 	])
+
+
+# styled components presentation 
+
+
+def StyledComponentPresentation(header, paragraph, api_ref, preview_and_code, name, active):
+	pass
