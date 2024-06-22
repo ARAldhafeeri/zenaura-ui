@@ -1,6 +1,6 @@
 from zenaura.client.tags.builder import Builder
 from zenaura.client.tags.node import Attribute
-from public.styles import with_theme_colors
+from public.styles import with_theme_colors, btn_one_class, with_theme_colors_text_no_hover
 
 def Image(src, alt, width, height, classname=""):
 		return Builder("img").with_attributes(
@@ -101,8 +101,163 @@ def Loader():
 	])
 
 
+def TabButton(tab_number, label, active_tab_variable, on_click, class_name, active_class=" me-2 inline-block p-5 border-b-2 border-light-green border-spacing-2 dark:border-dark-page1"):
+    class_expression = active_class if tab_number == active_tab_variable else ""
+    return ButtonWithAttrsChildren(
+        class_name=class_name  + class_expression,
+        attrs={
+            "py-click": on_click,
+            "name": tab_number
+        },
+        children=[label]
+    )
+
+def TabContent(tab_number, active_tab_variable, content):
+    is_visible = "block" if tab_number == active_tab_variable else "hidden"
+    return Div(
+        f"{is_visible} transition-all duration-300 p-4 rounded-lg  border-l-4 ",
+        [
+         content    
+        ]
+    )
+
+# Main Tab Component
+
+def TabsComponent(tab_buttons, tab_contents):
+  
+	return Div(
+		"bg-gray-100 font-sans",
+		[
+			Div(
+				"p-8",
+				[
+					Div(
+						"",
+						[
+							Div(
+								"flex  border-b-2 border-light-green dark:border-dark-black",
+								tab_buttons
+							),
+							Div(
+								"mt-3", 
+								[
+									*tab_contents
+								]
+							)
+						]
+					)
+				]
+			)
+		]
+	)
+
+# nav 
+
+def NavItemText(href, text, class_names, click=None):
+	tag = Builder('a') \
+		.with_attribute("class", class_names) \
+		.with_attribute("href", href) \
+		.with_text(text)
+	if click:
+		tag.with_attribute("py-click", click)
+	return tag.build()
+
+def NavItemTextNameFactory(href, text, class_names, click=None):
+	tag = Builder('a') \
+		.with_attribute("class", class_names) \
+		.with_attribute("href", href) \
+		.with_text(text)
+	if click:
+		tag.with_attribute("py-click", click)
+	name = text.lower()
+	tag.with_attribute("name", name)
+	return tag.build()
+
+
+def Link(href, text, class_names, target="_blank"):
+	return Builder('a') \
+    .with_attribute("class", class_names) \
+    .with_attribute("href", href) \
+		.with_attribute("target", target) \
+    .with_text(text).build()
+       
+def NavItemIcon(href, img, class_names=""):
+  return  Builder('a').with_attribute('href', href).with_attribute("class", class_names).with_child(img).build()
+
+def SvgPath(linecap, linejoin, d):
+        return  Builder('path') \
+          .with_attribute('stroke-linecap', linecap) \
+          .with_attribute('stroke-linejoin', linejoin) \
+          .with_attribute('d', d) \
+          .build()
+
+def Svg(class_name, fill, viewBox, stroke, path, stroke_width=None):
+        svg = Builder('svg') \
+          .with_attribute('class', class_name) \
+          .with_attributes(
+                  fill=fill,
+                  viewBox=viewBox,
+                  stroke=stroke
+          ).with_child(
+                path
+          )
+        if stroke_width:
+                svg.with_attribute('stroke-width', stroke_width)
+        return svg.build()
+
+def Span(class_name, text=None):
+        span =  Builder('span').with_attribute('class', class_name)
+        if text:
+                span.with_text(text)
+        return span.build()
+
+
 # styled components presentation 
 
+def StyledComponentPresentation(header, paragraph, api_ref_url, preview, code, name, component_is_active=False, active_tab="1"):
+	is_visible = "block" if component_is_active == name else "hidden"
 
-def StyledComponentPresentation(header, paragraph, api_ref, preview_and_code, name, active):
-	pass
+	# styled component intro section header, short paragraph, 
+	intro_section = Div("flex flex-col py-5", [
+		Header1(header, with_theme_colors_text_no_hover("")),
+		Paragraph(paragraph, with_theme_colors_text_no_hover("")),
+		Link(api_ref_url,  "Menu API Refrence", btn_one_class)
+	])
+	
+	# styled component code and preview tabs
+	tabs_btns = [
+			TabButton(
+				"1", 
+				"Preview", 
+				active_tab, 
+				"intro_section.handle_active_tab", 
+				with_theme_colors_text_no_hover(
+					f"px-4 py-2 transition-all duration-300"
+					)
+			),
+			TabButton(
+				"2", 
+				"Code", 
+				active_tab, 
+				"intro_section.handle_active_tab", 
+				with_theme_colors_text_no_hover(
+					f"px-4 py-2 transition-all duration-300"
+					)
+			)
+	]
+	
+	tabs_content = [
+			TabContent("1",  active_tab, Span("", preview)),
+			TabContent("2",  active_tab, Span("", code))
+		]
+	
+	return Div(f"{is_visible}", 
+		[
+			intro_section,
+			TabsComponent(
+				tabs_btns,
+				tabs_content
+			)	
+		]
+	)
+   

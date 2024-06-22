@@ -6,53 +6,34 @@ from public.components.sidebar import Sidebar
 from zenaura.client.component import Component
 from zenaura.client.mutator import mutator
 from public.styles import main_content, btn_one_class, with_theme_colors_text_no_hover
-from public.components.tabs import TabContent, TabButton, TabsComponent
-
-
-# passed to StyledComponentPresentation
-# (header, paragraph, api_ref, preview_and_code, name, active)
-content = [
-  lambda active : ( 
-    "Menu",
-    "Display a menu of options to the user - triggered by a button click", 
-    Button(btn_one_class, "API Refrence"),
-    TabsComponent(
-      [
-        TabButton(
-          "1", 
-          "Login Form", 
-          active, 
-          "intro_section.handle_active_tab", 
-          with_theme_colors_text_no_hover(
-            f"px-4 py-2 transition-all duration-300"
-            )
-        ),
-        TabButton(
-          "2", 
-          "Dashboard", 
-          active, 
-          "intro_section.handle_active_tab", 
-          with_theme_colors_text_no_hover(
-            f"px-4 py-2 transition-all duration-300"
-            )
-        ),
-        TabButton(
-          "3", 
-          "Admin", 
-          active, 
-          "intro_section.handle_active_tab", 
-          with_theme_colors_text_no_hover(
-            f"px-4 py-2 transition-all duration-300"
-            )
-        ),
-      ],
-      [
-        TabContent("1",  active, "Section 1 Content", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam justo nec justo lacinia, vel ullamcorper nibh tincidunt."),
-        TabContent("2",  active, "Section 2 Content", "Proin non velit ac purus malesuada venenatis sit amet eget lacus. Morbi quis purus id ipsum ultrices aliquet Morbi quis."),
-      ]
-    )
+from public.constants import menu_component_code
+def StyledComponents(active_comp, active_tab):
+  return Div("p-10", 
+    [
+      StyledComponentPresentation(
+         "Menu",
+         "Display a menu to the user - triggered by py-click",
+         "url",
+         Button(btn_one_class, "open", "null", "menu"),
+         menu_component_code,
+         "menu",
+         active_comp, 
+         active_tab
+      ),
+      StyledComponentPresentation(
+         "Menu",
+         "Display a menu to the user - triggered by py-click",
+         "url",
+         Button(btn_one_class, "open", "null", "menu"),
+         menu_component_code,
+         "menu",
+         active_comp, 
+         active_tab
+      ),
+    ]
   )
-]
+
+
 class Components(Component):
   def __init__(self):
       self.loading = True
@@ -69,25 +50,15 @@ class Components(Component):
      self.active_comp = event.target.name
 
   @mutator
-  async def set_active_comp(self, event):
-     self.active_comp = event.target.name
+  async def set_active_tab(self, event):
+     self.active_tab = "2" if self.active_tab == "1" else "2"
 
   def render(self):
+    
     return  Div(main_content, [
       # main content
-      Div("flex w-auto p-4 ", [
-        	Section([
-            Sidebar("test"),
-            Div("p-10", [
-              Paragraph("""Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita quam odit officiis
-              magni doloribus ipsa dolore, dolores nihil accusantium labore, incidunt autem iure quae vitae voluptate,
-              esse asperiores aliquam repellat. Harum aliquid non officiis porro at cumque eaque inventore iure. Modi sunt
-              optio mollitia repellat sed ab quibusdam quos harum!"""),
-                Paragraph("""Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita quam odit officiis
-              magni doloribus ipsa dolore, dolores nihil accusantium labore, incidunt autem iure quae vitae voluptate,
-              esse asperiores aliquam repellat. Harum aliquid non officiis porro at cumque eaque inventore iure. Modi sunt
-              optio mollitia repellat sed ab quibusdam quos harum!"""),
-            ])
-					], "grid grid-cols-[20%_80%]") if not self.loading else Loader()
-      ]) 
+      Section([
+        Sidebar(),
+        StyledComponents(self.active_comp, self.active_tab)
+      ], "grid grid-cols-[20%_80%]") if not self.loading else Loader()
     ])

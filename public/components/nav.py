@@ -2,46 +2,6 @@ from .common import *
 from zenaura.client.tags.builder import Builder
 from public.styles import with_theme_colors
 
-def NavItemText(href, text, class_names, click=None):
-  tag = Builder('a') \
-    .with_attribute("class", class_names) \
-    .with_attribute("href", href) \
-    .with_text(text)
-  if click:
-    tag.with_attribute("py-click", click)
-       
-  return tag.build()
-
-def NavItemIcon(href, img, class_names=""):
-  return  Builder('a').with_attribute('href', href).with_attribute("class", class_names).with_child(img).build()
-
-def SvgPath(linecap, linejoin, d):
-        return  Builder('path') \
-          .with_attribute('stroke-linecap', linecap) \
-          .with_attribute('stroke-linejoin', linejoin) \
-          .with_attribute('d', d) \
-          .build()
-
-def Svg(class_name, fill, viewBox, stroke, path, stroke_width=None):
-        svg = Builder('svg') \
-          .with_attribute('class', class_name) \
-          .with_attributes(
-                  fill=fill,
-                  viewBox=viewBox,
-                  stroke=stroke
-          ).with_child(
-                path
-          )
-        if stroke_width:
-                svg.with_attribute('stroke-width', stroke_width)
-        return svg.build()
-
-def Span(class_name, text=None):
-        span =  Builder('span').with_attribute('class', class_name)
-        if text:
-                span.with_text(text)
-        return span.build()
-
 def MenuSmallScreenBtn(show=False):
   xShow = "block" if show else "hidden"
   menuShow = "hidden" if show else "block"

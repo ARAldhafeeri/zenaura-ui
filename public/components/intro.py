@@ -2,7 +2,6 @@ from public.components.common import *
 from zenaura.client.component import Component
 from zenaura.client.mutator import mutator
 from public.loading import DOMIsReady
-from public.components.tabs import TabsComponent, TabContent, TabButton
 from public.styles import main_content, with_theme_colors_text_no_hover
 class IntroSection(Component):
 	def __init__(self):
@@ -90,9 +89,9 @@ class IntroSection(Component):
 						),
 					],
 					[
-						TabContent("1",  self.active, "Section 1 Content", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam justo nec justo lacinia, vel ullamcorper nibh tincidunt."),
-						TabContent("2",  self.active, "Section 2 Content", "Proin non velit ac purus malesuada venenatis sit amet eget lacus. Morbi quis purus id ipsum ultrices aliquet Morbi quis."),
-						TabContent("3",  self.active, "Section 3 Content", "Fusce hendrerit urna vel tortor luctus, nec tristique odio tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.")
+						TabContent("1",  self.active, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam justo nec justo lacinia, vel ullamcorper nibh tincidunt."),
+						TabContent("2",  self.active,  "Proin non velit ac purus malesuada venenatis sit amet eget lacus. Morbi quis purus id ipsum ultrices aliquet Morbi quis."),
+						TabContent("3",  self.active, "Fusce hendrerit urna vel tortor luctus, nec tristique odio tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.")
 					]
 				)
 			], "") if not self.loading else Loader()
