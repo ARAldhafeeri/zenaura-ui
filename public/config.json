@@ -18,6 +18,10 @@
           "./public/routes.py",
           "./public/data.py",
           "./public/constants.py",
+          "./public/styles.py",
+          "./public/loading.py",
+          "./public/main.py",
+
           "./public/components/common.py",
           "./public/components/nav.py",
           "./public/components/footer.py",
@@ -28,9 +32,9 @@
           "./public/components/theme.py",
           "./public/components/examples.py",
           "./public/components/sidebar.py",
-          "./public/styles.py",
-          "./public/loading.py",
-          "./public/main.py"
+
+
+          "./public/styled/menu.py"
         ]
       }
     ],

@@ -1,7 +1,8 @@
 from zenaura.client.tags.builder import Builder
 from zenaura.client.tags.node import Attribute
 from public.styles import with_theme_colors, btn_one_class, with_theme_colors_text_no_hover
-
+from typing import List
+# Base 
 def Image(src, alt, width, height, classname=""):
 		return Builder("img").with_attributes(
 				src=src,
@@ -20,6 +21,9 @@ def Section(children, class_name="intro"):
 		section = Builder('section').with_attribute('class', class_name).build()
 		section.children = children
 		return section
+
+def HR():
+	return Builder("hr").with_attribute('class', "w-full border-b-1 border-light-green dark:border-gray-700 ").build()
 
 # features menu
 
@@ -80,16 +84,13 @@ def TableRow(content):
 def Table(rows):
 		return Div('table row', rows)
 
-def ExpandableContent(code, is_visible, class_name=''):
-		style = 'display: none;' if not is_visible else 'display: block;'
+def ExpandableContent(code, class_name=''):
 		content = Div('expandable-content', [
 				Div('code-section ', [
 						CodeBlock(code)
 				])
 		])
-		content.attributes.append(Attribute('style', style))
 		content.attributes.append(Attribute('class', class_name))
-		content.attributes.append(Attribute('active', is_visible))
 		return content
 
 def Loader():
@@ -115,7 +116,7 @@ def TabButton(tab_number, label, active_tab_variable, on_click, class_name, acti
 def TabContent(tab_number, active_tab_variable, content):
     is_visible = "block" if tab_number == active_tab_variable else "hidden"
     return Div(
-        f"{is_visible} transition-all duration-300 p-4 rounded-lg  border-l-4 ",
+        f"{is_visible} transition-all duration-300 p-4",
         [
          content    
         ]
@@ -218,10 +219,10 @@ def StyledComponentPresentation(header, paragraph, api_ref_url, preview, code, n
 	is_visible = "block" if component_is_active == name else "hidden"
 
 	# styled component intro section header, short paragraph, 
-	intro_section = Div("flex flex-col py-5", [
+	intro_section = Div("flex flex-col py-7", [
 		Header1(header, with_theme_colors_text_no_hover("")),
 		Paragraph(paragraph, with_theme_colors_text_no_hover("")),
-		Link(api_ref_url,  "Menu API Refrence", btn_one_class)
+		Link(api_ref_url,  "Menu API Refrence", btn_one_class + "w-40")
 	])
 	
 	# styled component code and preview tabs
@@ -230,7 +231,7 @@ def StyledComponentPresentation(header, paragraph, api_ref_url, preview, code, n
 				"1", 
 				"Preview", 
 				active_tab, 
-				"intro_section.handle_active_tab", 
+				"components.set_active_tab", 
 				with_theme_colors_text_no_hover(
 					f"px-4 py-2 transition-all duration-300"
 					)
@@ -239,7 +240,7 @@ def StyledComponentPresentation(header, paragraph, api_ref_url, preview, code, n
 				"2", 
 				"Code", 
 				active_tab, 
-				"intro_section.handle_active_tab", 
+				"components.set_active_tab", 
 				with_theme_colors_text_no_hover(
 					f"px-4 py-2 transition-all duration-300"
 					)
@@ -247,8 +248,8 @@ def StyledComponentPresentation(header, paragraph, api_ref_url, preview, code, n
 	]
 	
 	tabs_content = [
-			TabContent("1",  active_tab, Span("", preview)),
-			TabContent("2",  active_tab, Span("", code))
+			TabContent("1",  active_tab, preview),
+			TabContent("2",  active_tab,  code)
 		]
 	
 	return Div(f"{is_visible}", 
@@ -260,4 +261,31 @@ def StyledComponentPresentation(header, paragraph, api_ref_url, preview, code, n
 			)	
 		]
 	)
-   
+  
+
+# Menu 
+
+def Menu(main_btn : Button, children: List[ButtonWithAttrsChildren], show : bool) -> "Menu":
+	"""
+		Display a menu to the user - triggered by py-click
+
+		args : 
+			main_btn -> button used to toggle dropdown menu on click.
+			children -> menu children 
+			show -> used to toggle menu visibility
+		return : 
+			Togglable menu with options
+	"""
+
+	menu = Div(
+		"absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-dark-gray1" + (" hidden" if not show else ""),
+		children
+	)
+
+	return Div("flex justify-center", [
+		Div("relative inline-block mb-20", [
+			main_btn, 
+			menu
+
+		])
+	])
