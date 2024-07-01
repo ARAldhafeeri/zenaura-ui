@@ -35,3 +35,12 @@
   background: #76ABAE;
   border-radius: 4px;
 }
+
+iframe{
+  height: 100vh;
+  width: 100vw
+}
+
+iframe::-webkit-scrollbar {
+display: none;
+}

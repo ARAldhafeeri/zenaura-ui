@@ -15,7 +15,6 @@ class Components(Component):
 
   @mutator
   async def attached(self):
-    await DOMIsReady()
     self.loading = False
 
   @mutator
@@ -34,5 +33,5 @@ class Components(Component):
   def render(self):
     
     return  Div(main_content, [
-     MicroFrontend("url") if not self.loading else Loader()
+     MicroFrontend("https://araldhafeeri.github.io/zenaura-ui-comp/", "") 
     ])

@@ -212,7 +212,8 @@ def Span(class_name, text=None):
                 span.with_text(text)
         return span.build()
 
-def MicroFrontend(url):
-	return Builder("iframe").with_attributes(
+def MicroFrontend(url, class_names):
+	return Builder("iframe").with_class(class_names).with_attributes(
 		src=url,
+		loading="lazy"
 	).build()
