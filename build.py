@@ -18,10 +18,19 @@ ZenauraServer.hydrate_app_layout(my_app_layout, scripts=[
         """,
         """
         <script>
+            function sendMessageToIframes(message) {
+                const iframes = document.querySelectorAll('iframe');
+                iframes.forEach(iframe => {
+                    iframe.contentWindow.postMessage(message, '*'); // Replace '*' with the specific origin for better security
+                });
+            }
             if (localStorage.getItem('theme') === 'light') {
                 doc.documentElement.classList.remove('dark');
+                sendMessageToIframes('light-theme');
+                
             } else {
                 doc.documentElement.classList.add('dark');
+                sendMessageToIframes('dark-theme');
             }
         </script>
         """

@@ -4,11 +4,12 @@ from zenaura.client.component import Component, Reuseable
 from zenaura.client.mutator import mutator
 try:
 	from pyscript import document
-	from js import localStorage
+	from js import localStorage, sendMessageToIframes
 except ImportError:
 	# build server
 	document = None 
 	localStorage = None 
+	sendMessageToIframes = None
 
 
 class Header(Component):
@@ -31,6 +32,7 @@ class Header(Component):
 	def theme_condition(self, condition):
 		document.documentElement.classList.remove('dark') if condition else document.documentElement.classList.add('dark')
 		localStorage.setItem("theme", "light") if condition else localStorage.setItem("theme", "dark")
+		sendMessageToIframes('light-theme') if condition else sendMessageToIframes("dark-theme")
 		self.light = condition
 
 	@mutator

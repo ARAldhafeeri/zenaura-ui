@@ -214,6 +214,5 @@ def Span(class_name, text=None):
 
 def MicroFrontend(url, class_names):
 	return Builder("iframe").with_class(class_names).with_attributes(
-		src=url,
-		loading="lazy"
+		src=url
 	).build()

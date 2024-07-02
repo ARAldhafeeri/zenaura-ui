@@ -32,6 +32,6 @@ class Components(Component):
 
   def render(self):
     
-    return  Div(main_content, [
+    return  Div("w-screen h-screen py-[60px]", [
      MicroFrontend("https://araldhafeeri.github.io/zenaura-ui-comp/", "") 
     ])
