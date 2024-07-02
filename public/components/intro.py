@@ -62,7 +62,7 @@ class IntroSection(Component):
 					[
 						TabButton(
 							"1", 
-							"Login Form", 
+							"Fintech dashboard", 
 							self.active, 
 							"intro_section.handle_active_tab", 
 							with_theme_colors_text_no_hover(
@@ -71,7 +71,7 @@ class IntroSection(Component):
 						),
 						TabButton(
 							"2", 
-							"Dashboard", 
+							"Ecomerace", 
 							self.active, 
 							"intro_section.handle_active_tab", 
 							with_theme_colors_text_no_hover(
@@ -80,7 +80,16 @@ class IntroSection(Component):
 						),
 						TabButton(
 							"3", 
-							"Admin", 
+							"Social Media feed", 
+							self.active, 
+							"intro_section.handle_active_tab", 
+							with_theme_colors_text_no_hover(
+								f"px-4 py-2 transition-all duration-300"
+								)
+						),
+						TabButton(
+							"4", 
+							"Health and Fitness Tracker", 
 							self.active, 
 							"intro_section.handle_active_tab", 
 							with_theme_colors_text_no_hover(
