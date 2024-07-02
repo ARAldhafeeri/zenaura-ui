@@ -5,13 +5,10 @@ from public.routes import ClientRoutes
 from public.components.header import Header
 from public.components.intro import IntroSection
 from public.components.footer import Footer
-from public.components.docs import Docs
 from public.components.components import Components
 from public.components.examples import Example
 from zenaura.client.layout import Layout
-from zenaura.client.dom import zenaura_dom
 
-from public.components.theme import Theme
 try :
     from pyscript import window, document
 except ImportError:
@@ -28,19 +25,15 @@ router = App()
 nav_bar_header = Header(router)
 intro_section = IntroSection()
 footer = Footer()
-docs = Docs()
 components = Components()
 example = Example() 
-theme = Theme()
 
 # hoc 
 
 # App and routing
 home_page = Page([intro_section])
-docs_page = Page([docs])
 components_page = Page([components])
 example_page = Page([example])
-theme_page = Page([theme])
 
 router.add_route(Route(
     title="Developer-Focused | Zenaura",
@@ -48,11 +41,6 @@ router.add_route(Route(
     page=home_page
 ))
 
-router.add_route(Route(
-    title="docs",
-    path=ClientRoutes.docs.value,
-    page=docs_page
-))
 
 router.add_route(Route(
     title="components",
@@ -67,11 +55,6 @@ router.add_route(Route(
     page=example_page
 ))
 
-router.add_route(Route(
-    title="theme",
-    path=ClientRoutes.theme.value,
-    page=theme_page
-))
 
 my_app_layout = Layout(
     top= [nav_bar_header], 

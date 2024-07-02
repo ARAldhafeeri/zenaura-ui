@@ -49,23 +49,10 @@ def NavBarItems(active):
           # add more nav items here
           [
             NavItemText(
-                "javascript:;", 
-                "Docs", 
-                f"rounded-md {active_item_class if active == 'docs' else inactive_item_class} px-3 py-2 text-sm font-medium text-light-white",
-                click="nav_bar_header.navigate_to_docs"
-            ),
-            NavItemText(
             "javascript:;", 
             "Components", 
             f"rounded-md {active_item_class if active == 'components' else inactive_item_class}  px-3 py-2 text-sm bg-red font-medium text-light-white",
             "nav_bar_header.navigate_to_components"
-            ),
-            NavItemText(
-                "javascript:;", 
-                "Themes", 
-                f"rounded-md {active_item_class if active == 'theme' else inactive_item_class} px-3 py-2 text-sm font-medium text-light-white",
-                "nav_bar_header.navigate_to_theme"
-
             ),
             NavItemText(
                 "javascript:;", 
@@ -88,19 +75,9 @@ def NavBarItemsMobile(show, active):
           # add more nav items here
           [
             NavItemText(
-                "javascript:;", 
-                "Docs", 
-                f"rounded-md text-left {active_item_class if active == 'docs' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white"
-            ),
-            NavItemText(
             "javascript:;", 
             "Components", 
             f"rounded-md text-left {active_item_class if active == 'components' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white",
-            ),
-            NavItemText(
-                "javascript:;", 
-                "Themes", 
-              f"rounded-md text-left {active_item_class if active == 'theme' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white",
             ),
             NavItemText(
                 "javascript:;", 
