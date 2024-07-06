@@ -16,7 +16,7 @@ def Header3(text, class_name):
 def ListItem(class_name, children):
     return Builder("li").with_children(*children).with_class(class_name).build()
 # nav Item 
-sidebar = Div("w-1/5 bg-light-gray2 dark:bg-dark-gray2 rounded min-h-screen text-white p-4", [
+sidebar = Div("w-1/5  h-3/5 bg-light-gray2 dark:bg-dark-gray2 rounded min-h-screen text-white p-4", [
     Header3("ezx bank", "text-2xl font-bold mb-8 text-light-white dark:text-dark-page1"),
     OL([
       LI(NavItemText("#", "Dashboard",left_side_bar), {"class": "mb-4"}),
@@ -30,7 +30,7 @@ sidebar = Div("w-1/5 bg-light-gray2 dark:bg-dark-gray2 rounded min-h-screen text
 ])
 
 # Main Content
-main_content = Div("w-4/5 p-6", [
+main_content = Div("w-4/5 p-6 h-3/5", [
     Div("flex justify-between items-center mb-8", [
         Header2("Dashboard", text),
         Div("flex items-center space-x-4", [

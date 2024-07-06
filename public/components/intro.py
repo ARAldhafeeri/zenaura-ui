@@ -4,6 +4,7 @@ from zenaura.client.mutator import mutator
 from public.loading import DOMIsReady
 from public.styles import main_content, with_theme_colors_text_no_hover
 from .fin_tech import fintech_layout
+from .ecommerce import ecommerce_layout
 try : 
 	from js import fintechDashPanel
 except ImportError:
@@ -106,11 +107,11 @@ class IntroSection(Component):
 					],
 					[
 						TabContent("1",  self.active, fintech_layout),
-						TabContent("2",  self.active,  "Proin non velit ac purus malesuada venenatis sit amet eget lacus. Morbi quis purus id ipsum ultrices aliquet Morbi quis."),
+						TabContent("2",  self.active, ecommerce_layout),
 						TabContent("3",  self.active, "Fusce hendrerit urna vel tortor luctus, nec tristique odio tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.")
 					]
 				)
-			], "")
+			], "") 
 		
 		])
 		

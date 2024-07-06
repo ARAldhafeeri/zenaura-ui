@@ -33,6 +33,7 @@
           "./public/components/examples.py",
           "./public/components/sidebar.py",
           "./public/components/fin_tech.py",
+          "./public/components/ecommerce.py",
 
 
           "./public/styled/menu.py"
