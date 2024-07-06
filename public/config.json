@@ -10,7 +10,7 @@
       }
     ],
     "packages": [
-      "zenaura==0.11.125"
+      "zenaura==0.12.0"
     ],
     "fetch": [
       {
@@ -32,6 +32,7 @@
           "./public/components/theme.py",
           "./public/components/examples.py",
           "./public/components/sidebar.py",
+          "./public/components/fin_tech.py",
 
 
           "./public/styled/menu.py"

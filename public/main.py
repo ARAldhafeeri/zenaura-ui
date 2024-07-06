@@ -69,3 +69,4 @@ router.layout = my_app_layout
 # handle when user enter url with path different than "/"
 router.history.current = HistoryNode(home_page)
 event_loop.run_until_complete(router.navigate(window.location.pathname))
+

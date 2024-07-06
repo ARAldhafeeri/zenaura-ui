@@ -93,7 +93,7 @@ def NavBarLogo():
     return  Div(
     "flex flex-shrink-0 items-center",
         [
-            Image("./public/logo.png", "Your Company", "32", "32", "h-8 w-auto")
+            Image("./public/imgs/logo.png", "Your Company", "32", "32", "h-8 w-auto")
         ]
     )
 
@@ -108,7 +108,7 @@ def NavBarRightContent(is_dark):
             [
                 Span("absolute -inset-1.5"),
                 Span("sr-only", "View notifications"),
-               Image("./public/dark.png", "toggle theme", "15", "15") if is_dark else Image("./public/light.png", "toggle theme", "15", "15")
+               Image("./public/imgs/dark.png", "toggle theme", "15", "15") if is_dark else Image("./public/imgs/light.png", "toggle theme", "15", "15")
             ],
             "nav_bar_header.toggle_theme"
         )
