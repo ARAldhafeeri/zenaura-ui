@@ -46,11 +46,11 @@ class Header(Component):
 		
 
 	async def navigate_to_components(self, _):
-		await self.router.navigate("/components")
+		await self.router.navigate("/zenaura-ui/components")
 		self.update_title()
 		
 	async def navigate_to_examples(self, _):
-		await self.router.navigate("/")
+		await self.router.navigate("/zenaura-ui/")
 		self.update_title()
 
 	@mutator
