@@ -50,7 +50,7 @@ class Header(Component):
 		self.update_title()
 		
 	async def navigate_to_examples(self, _):
-		await self.router.navigate("/zenaura-ui/")
+		await self.router.navigate("/zenaura-ui")
 		self.update_title()
 
 	@mutator
