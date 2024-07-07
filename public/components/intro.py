@@ -5,6 +5,8 @@ from public.loading import DOMIsReady
 from public.styles import main_content, with_theme_colors_text_no_hover
 from .fin_tech import fintech_layout
 from .ecommerce import ecommerce_layout
+from .social_media_feed import social_media_layout
+from .cards import cards_page_layout
 try : 
 	from js import fintechDashPanel
 except ImportError:
@@ -94,22 +96,12 @@ class IntroSection(Component):
 							with_theme_colors_text_no_hover(
 								f"px-4 py-2 transition-all duration-300"
 								)
-						),
-						TabButton(
-							"4", 
-							"Health and Fitness Tracker", 
-							self.active, 
-							"intro_section.handle_active_tab", 
-							with_theme_colors_text_no_hover(
-								f"px-4 py-2 transition-all duration-300"
-								)
-						),
+						)
 					],
 					[
 						TabContent("1",  self.active, fintech_layout),
 						TabContent("2",  self.active, ecommerce_layout),
-						TabContent("3",  self.active, "Fusce hendrerit urna vel tortor luctus, nec tristique odio tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.")
-					]
+						TabContent("3",  self.active, social_media_layout)					]
 				)
 			], "") 
 		

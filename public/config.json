@@ -30,10 +30,11 @@
           "./public/components/docs.py",
           "./public/components/components.py",
           "./public/components/theme.py",
-          "./public/components/examples.py",
           "./public/components/sidebar.py",
           "./public/components/fin_tech.py",
           "./public/components/ecommerce.py",
+          "./public/components/social_media_feed.py",
+
 
 
           "./public/styled/menu.py"

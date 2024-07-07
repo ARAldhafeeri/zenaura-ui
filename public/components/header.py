@@ -45,21 +45,12 @@ class Header(Component):
 		self.theme_condition(self.light)
 		
 
-
-	async def navigate_to_docs(self, _):
-		await self.router.navigate("/docs")
-		self.update_title()
-
 	async def navigate_to_components(self, _):
 		await self.router.navigate("/components")
 		self.update_title()
 		
-	async def navigate_to_theme(self, _):
-		await self.router.navigate("/theme")
-		self.update_title()
-	
 	async def navigate_to_examples(self, _):
-		await self.router.navigate("/examples")
+		await self.router.navigate("/")
 		self.update_title()
 
 	@mutator
