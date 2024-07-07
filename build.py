@@ -37,9 +37,14 @@ ZenauraServer.hydrate_app_layout(my_app_layout, scripts=[
         '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>',
         """
         <script>
+           var myChart = null;
            function fintechDashPanel() {
              const ctx = document.getElementById('panel').getContext('2d');
-                const myChart = new Chart(ctx, {
+                if (myChart){
+                myChart.clear();
+                myChart.destroy();
+                }
+                myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                     labels: ['3 Apr', '4 Apr', '5 Apr', '6 Apr', '7 Apr', '8 Apr'],

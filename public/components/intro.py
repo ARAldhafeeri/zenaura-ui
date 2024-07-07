@@ -6,7 +6,6 @@ from public.styles import main_content, with_theme_colors_text_no_hover
 from .fin_tech import fintech_layout
 from .ecommerce import ecommerce_layout
 from .social_media_feed import social_media_layout
-from .cards import cards_page_layout
 try : 
 	from js import fintechDashPanel
 except ImportError:
