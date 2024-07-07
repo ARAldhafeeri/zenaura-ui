@@ -8,8 +8,10 @@ from .ecommerce import ecommerce_layout
 from .social_media_feed import social_media_layout
 try : 
 	from js import fintechDashPanel
+	from pyscript import window
 except ImportError:
 	fintechDashPanel = None
+	window = None
 class IntroSection(Component):
 	def __init__(self):
 		self.loading = True
@@ -55,6 +57,11 @@ class IntroSection(Component):
 	async def handle_active_tab(self, event):
 			self.active = event.target.name
 			
+	def go_to_docs(self, _):
+		window.open("https://araldhafeeri.github.io/Zenaura/zenaura-ui/installation/", "_blank")
+
+	def go_to_api(self, _):
+		window.open("https://araldhafeeri.github.io/Zenaura/api/ui/badge/#zenaura.ui.badge.Badge", "_blank")
 
 	def render(self):
 		return  Div(main_content, [
@@ -64,8 +71,8 @@ class IntroSection(Component):
 					Paragraph("Zenaura/UI enables developers to build modern web applications more efficiently by utilizing styled components and leveraging Tailwind CSS.", self.paragraph_class)
 				]),
 				Div("flex justify-center ", [
-					Button(self.btn_one_class, "Get Started"),
-					Button(self.btn_two_class, "Components") 
+					Button(self.btn_one_class, "Get Started", "intro_section.go_to_docs" ),
+					Button(self.btn_two_class, "Components APIs",  "intro_section.go_to_api") 
 				]),
 				TabsComponent(
 					[
