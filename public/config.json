@@ -34,6 +34,8 @@
           "./public/components/fin_tech.py",
           "./public/components/ecommerce.py",
           "./public/components/social_media_feed.py",
+          "./public/components/charts.py",
+
 
 
 

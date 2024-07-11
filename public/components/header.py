@@ -53,11 +53,18 @@ class Header(Component):
 		await self.router.navigate("/zenaura-ui")
 		self.update_title()
 
+	async def navigate_to_charts(self, _):
+			await self.router.navigate("/zenaura-ui/charts")
+			self.update_title()
+
 	@mutator
 	async def attached(self):
-		self.update_title()
-		is_light = localStorage.getItem("theme") == "light"
-		self.theme_condition(is_light)
+		try: 
+			self.update_title()
+			is_light = localStorage.getItem("theme") == "light"
+			self.theme_condition(is_light)
+		except:
+			pass
 
 
 	def render(self):

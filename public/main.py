@@ -6,6 +6,7 @@ from public.components.header import Header
 from public.components.intro import IntroSection
 from public.components.footer import Footer
 from public.components.components import Components
+from public.components.charts import Charts
 from zenaura.client.layout import Layout
 
 try :
@@ -25,12 +26,14 @@ nav_bar_header = Header(router)
 intro_section = IntroSection()
 footer = Footer()
 components = Components()
+charts = Charts() 
 
 # hoc 
 
 # App and routing
 home_page = Page([intro_section])
 components_page = Page([components])
+charts_page = Page([charts])
 
 router.add_route(Route(
     title="Developer-Focused | Zenaura",
@@ -43,6 +46,12 @@ router.add_route(Route(
     title="components",
     path=ClientRoutes.components.value,
     page=components_page
+))
+
+router.add_route(Route(
+    title="charts",
+    path=ClientRoutes.charts.value,
+    page=charts_page
 ))
 
 

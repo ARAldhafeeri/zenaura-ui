@@ -60,6 +60,13 @@ def NavBarItems(active):
                 f"rounded-md {active_item_class if active == 'example' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white",
                 "nav_bar_header.navigate_to_examples"
             ),
+            NavItemText(
+                "javascript:;", 
+                "Charts", 
+                f"rounded-md text-left {active_item_class if active == 'charts' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white",
+                "nav_bar_header.navigate_to_charts"
+
+            ),
           ]
         )
       ]
@@ -83,6 +90,11 @@ def NavBarItemsMobile(show, active):
                 "javascript:;", 
                 "Examples", 
                 f"rounded-md text-left {active_item_class if active == 'examples' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white"
+            ),
+            NavItemText(
+                "javascript:;", 
+                "Charts", 
+                f"rounded-md text-left {active_item_class if active == 'charts' else inactive_item_class}  px-3 py-2 text-sm font-medium text-light-white"
             ),
           ]
         )

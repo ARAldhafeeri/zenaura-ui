@@ -10,6 +10,7 @@ DEVSERVER = DevServer(app, port=5000, debug=True)
 
 @DEVSERVER.app.route(ClientRoutes.home.value)
 @DEVSERVER.app.route(ClientRoutes.components.value)
+@DEVSERVER.app.route(ClientRoutes.charts.value)
 @DEVSERVER.app.route("/")
 def root():
     try:
