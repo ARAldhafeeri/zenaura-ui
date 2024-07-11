@@ -1,17 +1,56 @@
 from public.components.common import *
 from zenaura.client.component import Component
 from zenaura.client.mutator import mutator
+from zenaura.ui.charts import ChartThis
 from public.loading import DOMIsReady
 from public.styles import main_content, with_theme_colors_text_no_hover
 from .fin_tech import fintech_layout
 from .ecommerce import ecommerce_layout
 from .social_media_feed import social_media_layout
 try : 
-	from js import fintechDashPanel
 	from pyscript import window
 except ImportError:
 	fintechDashPanel = None
 	window = None
+
+config  = {
+    "type": 'line',
+    "data": {
+        "labels": ['3 Apr', '4 Apr', '5 Apr', '6 Apr', '7 Apr', '8 Apr'],
+        "datasets": [
+            {
+                "label": 'Income',
+                "data": [500, 178, 450, 380, 610, 900],
+                "backgroundColor": 'rgba(54, 162, 235, 0.2)',
+                "borderColor": 'rgba(54, 162, 235, 1)',
+                "borderWidth": 1,
+                "fill": True,
+            },
+            {
+                "label": 'Expenses',
+                "data": [700, 623, 350, 580, 420, 700],
+                "backgroundColor": 'rgba(255, 99, 132, 0.2)',
+                "borderColor": 'rgba(255, 99, 132, 1)',
+                "borderWidth": 1,
+                "fill": True,
+            },
+        ],
+    },
+    "options": {
+        "responsive": True,
+        "scales": {
+            "y": {
+                "beginAtZero": True,
+            },
+        },
+        "interaction": {
+            "mode": 'index',
+            "intersect": False,
+        },
+    }
+}
+
+
 class IntroSection(Component):
 	def __init__(self):
 		self.loading = True
@@ -51,7 +90,7 @@ class IntroSection(Component):
 	async def attached(self):
 		await DOMIsReady()
 		self.loading = False
-		fintechDashPanel()
+		ChartThis(config, "panel")
 
 	@mutator
 	async def handle_active_tab(self, event):
